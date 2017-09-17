@@ -1,0 +1,89 @@
+\documentclass[a4paper,11pt]{article}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Global structure parameters
+
+\usepackage{fullpage}%
+
+\usepackage[francais]{babel}%
+
+\usepackage[utf8]{inputenc}%
+\usepackage[T1]{fontenc}%
+
+%Font selection : http://www.tux.dk/FontCatalogue/newpx
+
+%\usepackage{newpxtext}%
+%\usepackage{newpxmath}%
+
+%Macro packages
+
+\usepackage{url}%
+\usepackage{graphicx}%
+\usepackage{listings}%
+
+%Parameters for listings
+
+\lstset{%
+	basicstyle=\footnosize\sffamily,%
+	columns=fullflexible,%
+	frame=lb,%
+	frameround=fftf,%
+	language=caml,%
+}%
+
+%Fine tuning
+
+\setlength{\parskip}{0.5\baselineskip}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\title{Correction TD 1 : Expressions rationnelles et automates finis}
+
+\author{Tom Bachard, Antoine Gonon}
+
+\date{15 septembre 2017}
+
+\maketitle
+
+
+\section*{\bf{Exercice 1 }}%
+\it
+De l'expression rationnelle à l'automate: algorithme de Thompson
+\\
+\\
+\rm
+Voici l'automate reconnaissant le langage dénoté par l'expression rationnelle
+\it
+$a^*b+(aba)^*$
+\rm
+: %
+
+\section*{\bf{Exercice 2 }}%
+\it
+De l'automate à l'expression rationnelle: équations et lemme d'Arden
+\rm{Soit $A=(Q, \Sigma, \delta, q_0, F)$ un automate fini.}
+\\
+\subsection{}
+Pour tout q\in \Q, on considère $L_e=\{w\in \Sigma^*, \delta^*(e,w)\in F\}$, l'ensemble des mots reconnus par l'automate (Q, \Sigma, \delta, e, F). En particulier, $L_{q_0}$ est le langage reconnu par l'automate A.
+\\
+On obtient le système suivant d'équations.
+\\
+$L_0=(a+b)L_0+aL_1$ (1)\\
+$L_1=aL_0+bL_2$ (2)\\
+$L_2=(a+b)L_2+aL_1+\epsilon$ (3)\\
+
+\subsection{}
+On résout (1) et (3) grâce au lemme d'Arden, les conditions pour l'unicité étant vérifiées, on obtient: %
+\\
+$L_0=(a+b)^*aL_1$\\
+$L_2=(a+b)^*(aL_1+\epsilon )$\\
+On réinjecte $L_0$ et $L_2$ dans (2). On peut alors utiliser le lemme d'Arden pour trouver $L_1$, les conditions pour l'unicité étant vérifiées, on obtient:\\
+$L_1=((a+b)(a+b)^*a)^*b(a+b)^*$\\
+Ce qui nous permet d'obtenir $L_0$, ie. le langage reconnue par notre automate:\\
+$L_0=(a+b)^*a((a+b)^+a)^*b(a+b)^*$.\\
+
+
+\end{document}
